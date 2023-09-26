@@ -1,0 +1,109 @@
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
+
+@font-face {
+  font-family: SFProText;
+  src: url(../fonts/SFProText-Light.ttf);
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: SFProText;
+  font-weight: 400;
+  src: url(../fonts/SFProText-Regular.ttf);
+}
+
+@font-face {
+  font-family: SFProText;
+  src: url(../fonts/SFProText-Medium.ttf);
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: SFProText;
+  src: url(../fonts/SFProText-Bold.ttf);
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "DM Serif Display script=latin rev=2";
+  src: url(../fonts/DMSerifDisplay-Regular.ttf);
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: Regular-italic;
+  src: url(../fonts/DMSerifDisplay-Italic.ttf);
+  font-weight: 400;
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+}
+
+
+/* NavBar */
+.navbar.bg-info{
+  background-color: #3d786e !important;
+}
+.navbar-nav li.nav-item{
+  height: 47px;
+  width: 47px;
+  align-items: center;
+  vertical-align: middle;
+  display: flex;
+  border-radius: 33px;
+}
+.navbar-nav li.nav-item:hover{
+  background: #558f85;
+}
+.navbar-nav li.nav-item a.dropdown-toggle::after{
+  display: none;
+}
+.navbar-dark .navbar-nav .nav-link{
+  color: #fff !important;
+}
+
+/* Sidebar */
+.b-sidebar-body{
+    background-color: #004d40;
+}
+.sidebar-menu ul{
+    display: block;
+    margin-left: 0;
+    padding-inline-start: 0;
+}
+.sidebar-menu ul li{
+    display: block;
+    padding: 10px;
+}
+.sidebar-menu ul li.active, .sidebar-menu ul li:hover{
+    background-color: #3d786e;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.sidebar-menu ul li a{
+    color: #fff;
+}
+.sidebar-menu ul li a:hover{
+    text-decoration: none;
+    cursor: pointer;
+}
+.b-sidebar > .b-sidebar-header{
+    background: #00695c;
+    color: #fff;
+    border-bottom: 1px solid #9e9c9c;
+}
+.b-sidebar > .b-sidebar-header strong{
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+.account-info, .account-info2 {
+    border-bottom: 1px solid #9e9c9c;
+    background: #00695c;
+}
+.account-info img{
+    width: 48px;
+    height: 48px;
+    float: left;
+}
