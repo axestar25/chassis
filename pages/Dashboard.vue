@@ -99,7 +99,7 @@
                                 <div class="Art-Content ml-3">
                                     <div class="art-title">
                                         <a href="javascript:void(0)" class="text-decoration-none">
-                                            <span class="for-editing mr-2"><i v-if="item.ArtStatus == 'For Editing'" class="fa fa-pen"></i> {{ item.ArtStatus }}</span>
+                                            <span class="for-editing mr-2"><i v-if="item.ArtStatus == 'For Editing'" class="fa fa-pencil" aria-hidden="true"></i> {{ item.ArtStatus }}</span>
                                         </a>
                                         <a href="javascript:void(0)" class="ArtTitle text-decoration-none">{{ item.ArtTitle }}</a>
                                     </div>

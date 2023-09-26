@@ -14,13 +14,13 @@
                     </template>
                     <b-dropdown-item disabled>Chassis</b-dropdown-item>
                     <b-dropdown-item href="#">
-                        <i class="fas fa-cog"></i> &nbsp; &nbsp; Research
+                        <i class="fa fa-search" style="color: #1976d2;" aria-hidden="true"></i> &nbsp; &nbsp; Research
                     </b-dropdown-item>
                     <b-dropdown-item href="#">
-                        <i class="fas fa-cog"></i> &nbsp; &nbsp; Writer
+                        <i class="fa fa-pencil" style="color: #004d40;" aria-hidden="true"></i> &nbsp; &nbsp; Writer
                     </b-dropdown-item>
                     <b-dropdown-item href="#">
-                        <i class="fas fa-cog"></i> &nbsp; &nbsp; Editor
+                        <i class="fa fa-list-alt" style="color: #3f51b5;" aria-hidden="true"></i> &nbsp; &nbsp; Editor
                     </b-dropdown-item>
 
                     <b-dropdown-item disabled>Other Options</b-dropdown-item>
