@@ -1,3 +1,3 @@
 module.exports = {
-    publicPath: process.envNODE_ENV === "production" ? "/chassis/" : "/"
+    publicPath: process.env.NODE_ENV === "production" ? "/chassis/" : "/"
 }
