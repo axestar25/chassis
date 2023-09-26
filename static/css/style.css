@@ -39,6 +39,16 @@
 html,
 body {
   scroll-behavior: smooth;
+  background-color: rgb(247 247 247);
+}
+
+.chassis-dashboard{
+  background-color: rgb(247 247 247) !important;
+}
+
+.btn-info{
+  background-color: #3d786e !important;
+  border-color: #3d786e !important;
 }
 
 
@@ -46,15 +56,15 @@ body {
 .navbar.bg-info{
   background-color: #3d786e !important;
 }
-.navbar-nav li.nav-item{
-  height: 47px;
-  width: 47px;
-  align-items: center;
-  vertical-align: middle;
-  display: flex;
+.navbar-nav li.nav-item .dropdown-toggle{
   border-radius: 33px;
+  padding-right: 9px;
+  padding-left: 9px;
+  width: 40px;
+  height: 40px;
+  text-align: center;
 }
-.navbar-nav li.nav-item:hover{
+.navbar-nav li.nav-item .dropdown-toggle:hover{
   background: #558f85;
 }
 .navbar-nav li.nav-item a.dropdown-toggle::after{
@@ -63,6 +73,25 @@ body {
 .navbar-dark .navbar-nav .nav-link{
   color: #fff !important;
 }
+.input-group-text i.fa{
+  color: #fff;
+}
+input#search-input {
+  background-color: #71b1a69e;
+  border: transparent !important;
+  color: #fff;
+  border-left: transparent;
+}
+input#search-input::placeholder {
+  color: #fff;
+  opacity: 1; /* Firefox */
+}
+.input-group-prepend .input-group-text{
+  background-color: #71b1a69e;
+  border: transparent;
+  border-right: transparent;
+}
+
 
 /* Sidebar */
 .b-sidebar-body{
@@ -106,4 +135,114 @@ body {
     width: 48px;
     height: 48px;
     float: left;
+}
+.account-info .btn-secondary{
+  display: flex;
+}
+.account-info .btn-secondary, .account-info .btn-secondary:hover,
+.account-info .btn-secondary:active, .show > .btn-secondary.dropdown-toggle{
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.account-info .dropdown-toggle::after{
+  margin-top: 9px;
+}
+.account-info .btn-group{
+  width: 100%;
+}
+
+.account-info .dropdown-menu.show{
+  width: 100%;
+}
+.account-info .dropdown-item.disabled{
+  font-size: 15px;
+  padding: 0.25rem 1.5rem;
+  font-weight: normal;
+}
+.account-info .dropdown-item{
+  padding: 1rem 1.7rem;
+  font-weight: 500;
+}
+.account-info .dropdown-item:hover, .account-info .dropdown-item:focus,
+.account-info .dropdown-item:active {
+  background-color: #e9ecef;
+}
+.account-info .exit-chassis .dropdown-item{
+  color: red;
+}
+
+/* Dashboard Global */ 
+.rp-1 .table thead th, .rp-1 .table thead td{
+  border-top: none !important;
+}
+.rp-1 .table thead th{
+  border-bottom: 1px solid #dee2e6;
+}
+.rp-1 .table thead th div{
+  color: #666666;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.customer .art-img{
+  display: block;
+}
+.customer .art-img img{
+  border: 2px solid #6666;
+}
+.customer .art-img .view-details{
+  color: #1976d2;
+  font-weight: 500;
+}
+.customer .art-img .writer-name{
+  color: #666666;
+}
+.customer .Art-Content .art-title{  
+  display: flex;
+  vertical-align: middle;
+  align-items: center;
+}
+.customer .Art-Content .art-title a.ArtTitle{
+  color: #1976d2;
+  font-weight: 500;
+  font-size: 18px;
+}
+.customer .Art-Content .for-editing{
+  background-color: #ffd54f !important;
+  border: none;
+  padding: 4px 18px;
+  border-radius: 30px;
+  color: #000;
+
+}
+.customer .art-img .safe-to-use{
+  background-color: #4caf50 !important;
+  border: none;
+  padding: 3px 6px;
+  border-radius: 30px;
+  color: #fff;
+}
+
+.white-bg{
+  background-color: #fff;
+}
+.btn-create-article{
+  background-color: #4caf50 !important;
+  border: none;
+  padding: 8px 20px;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 5px;
+}
+
+.blue-bg-with-text{
+  background-color: #1976d2;
+  color: #fff;
+  text-align: center;
+  display: block;
+  padding: 8px;
+  font-weight: 500;
+  width: 100%;
 }
