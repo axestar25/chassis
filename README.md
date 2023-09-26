@@ -1,4 +1,6 @@
 # chassis-admin
+user: a
+pw: a
 
 ## Build Setup
 
