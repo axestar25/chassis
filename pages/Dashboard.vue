@@ -16,6 +16,25 @@
                     <button class="btn-create-article btn-primary">Create Article</button>
                 </div>
 
+                <div class="Customers">
+                    <b-tabs content-class="mt-1">
+                        <span class="blue-bg-with-text">Customers</span>
+                        <b-tab title="TODAY (18)" active>
+                            <p>TEST</p>
+                        </b-tab>
+                        <b-tab title="ADVANCE (7)">
+                            <p>TEST</p>
+                        </b-tab>
+                        <b-tab title="LAST 7 DAYS (46)">
+                            <p>TEST</p>
+                        </b-tab>
+                        <b-tab title="SENT BACK (4)">
+                            <p>TEST</p>
+                        </b-tab>
+                    </b-tabs>
+                    <p v-if="Customers.length == 0" class="px-2 py-3 text-center mb-0">-No Customers Available-</p>
+                </div>
+
                 <div class="competitors">
                     <span class="blue-bg-with-text">Competitors</span>
                     <p v-if="Competitors.length == 0" class="px-2 py-3 text-center mb-0">-No Articles Available-</p>
@@ -23,8 +42,20 @@
 
                 <div class="products">
                     <span class="blue-bg-with-text">Products</span>
-                    <div class="product-content f-flex">
-                        
+                    <div class="product-content d-flex mt-3">
+                        <div class="actions">
+                            <ul class="d-block pl-3">
+                                <li>
+                                    <a href="#"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-file" aria-hidden="true"></i></a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                     <p v-if="Products.length == 0" class="px-2 py-3 text-center mb-0">-No Articles Available-</p>
                 </div>
@@ -146,6 +177,7 @@ export default {
             {ArtImg: "/img/archintel.jpg", ArtTitle: "[TEST] testing duplicate images", ArtPara: "The quick brown fox jumops over the lazy dog. The quick brown fox jumops over the lazy dog.The quick brown fox jumops over the lazy dog.", ArtStatus: "For Editing", WriterName: "archintel"},
             {ArtImg: "/img/archintel.jpg", ArtTitle: "[TEST] testing duplicate images 2", ArtPara: "The quick brown fox jumops over the lazy dog. The quick brown fox jumops over the lazy dog.The quick brown fox jumops over the lazy dog.", ArtStatus: "Published", WriterName: "archintel"}
         ],
+        Customers: [],
         Competitors: [],
         Products: [
             {ProductName: "TVS Jupiter 125 review, test ride", Stars: 4, DateCreated: "Oct 8, 2021 4:37 PM", SourceDate: "Oct 7, 2021", MediaDate: "Oct 8, 2021"}

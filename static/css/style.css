@@ -127,6 +127,10 @@ input#search-input::placeholder {
     font-size: 1.2rem;
     font-weight: 400;
 }
+.b-sidebar > .b-sidebar-footer {
+  background: #3d786e;
+}
+
 .account-info, .account-info2 {
     border-bottom: 1px solid #9e9c9c;
     background: #00695c;
@@ -162,7 +166,7 @@ input#search-input::placeholder {
   font-weight: normal;
 }
 .account-info .dropdown-item{
-  padding: 1rem 1.7rem;
+  padding: 0.75rem 1.7rem;
   font-weight: 500;
 }
 .account-info .dropdown-item:hover, .account-info .dropdown-item:focus,
@@ -174,6 +178,19 @@ input#search-input::placeholder {
 }
 
 /* Dashboard Global */ 
+.nav-tabs{
+  border: none !important;
+}
+.nav-tabs .nav-link{
+  font-weight: 500;
+  color: #495057;
+  border: none !important;
+}
+.nav-tabs .nav-link.active, .nav-tabs .nav-link:hover{
+  color: #1976d2 !important;
+  border-bottom: 2px solid #1976d2 !important;
+  border: none;
+}
 .rp-1 .table thead th, .rp-1 .table thead td{
   border-top: none !important;
 }
@@ -185,6 +202,23 @@ input#search-input::placeholder {
   font-weight: 500;
   font-size: 14px;
 }
+
+.products .actions ul li{
+  display: block;
+}
+.products .actions ul li a{
+  font-size: 28px;
+}
+.products .actions ul li a .fa-pencil{
+  color: #4caf50;
+}
+.products .actions ul li a .fa-user-plus{
+  color: #1976d2;
+}
+.products .actions ul li a .fa-file{
+  color: #FF5252;
+}
+
 
 .customer .art-img{
   display: block;

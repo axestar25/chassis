@@ -1,6 +1,19 @@
 <template>
   <div>
     <b-sidebar id="sidebar" title="Writer Chassis" shadow>
+        <!-- <div class="sidebar-company">
+            <ul>
+                <li>
+                    <a href="#">COmpany 1</a>
+                </li>
+            </ul>
+        </div> -->
+        <template #footer="">
+            <div class="d-block text-light align-items-center px-3 py-2">
+                <strong class="mr-auto w-100 float-left">Salesforce Home</strong>
+                <strong class="mr-auto w-100 float-left">{{ systemVersion }} | © 2021 {{ CompanyName }}</strong>
+            </div>
+        </template>
         <div class="px-0 py-0">
             <div class="account-info px-2 py-2 d-flex">
                 
@@ -66,6 +79,8 @@ export default {
         return {
             ProfileName: "Lester Bernaldez",
 			Position: "Writer",
+            systemVersion: "v.4.4.0",
+            CompanyName: "ArchInterl Corp.",
         };
     }
 }
