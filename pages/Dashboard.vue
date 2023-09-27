@@ -1,8 +1,6 @@
 <template>
-    <div
-        class="main-wrapper chassis-dashboard"
-        style="padding: 0px; background-color: #fcfdfd"
-    >
+    <div class="main-wrapper chassis-dashboard" style="padding: 0px; background-color: #fcfdfd">
+        <SidebarCompany />
         <template>
             <Navbar />
             <Sidebar />
@@ -20,7 +18,34 @@
                     <b-tabs content-class="mt-1">
                         <span class="blue-bg-with-text">Customers</span>
                         <b-tab title="TODAY (18)" active>
-                            <p>TEST</p>
+                            <div class="product-content d-flex mt-3" v-for="(item, index) in Customers" :key="index">
+                                <div class="actions">
+                                    <ul class="d-block pl-3">
+                                        <li>
+                                            <a href="#"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa fa-file" aria-hidden="true"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="product-info ml-4">
+                                    <a href="javascript:void(0)" class="ProductName text-decoration-none">{{ item.CustomerName }}</a>
+                                    <div class="rate mt-1 mb-1">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </div>
+                                    <p class="color-gray">
+                                        <span class="w-100 float-left">Created on {{ item.DateCreated}} </span>
+                                        <span class="w-100 float-left">[0 | 0] Source Date {{ item.SourceDate}} </span>
+                                        <span class="w-100 float-left">Media Date {{ item.MediaDate}} </span>
+                                    </p>
+                                </div>
+                            </div>
                         </b-tab>
                         <b-tab title="ADVANCE (7)">
                             <p>TEST</p>
@@ -171,6 +196,7 @@
 <script>
 import Navbar from "~/components/Layout/Navbar";
 import Sidebar from "~/components/Layout/Sidebar";
+import SidebarCompany from "~/components/Layout/SidebarCompany";
 
 export default {
   components: {
@@ -188,7 +214,10 @@ export default {
             {ArtImg: "/img/archintel.jpg", ArtTitle: "[TEST] testing duplicate images", ArtPara: "The quick brown fox jumops over the lazy dog. The quick brown fox jumops over the lazy dog.The quick brown fox jumops over the lazy dog.", ArtStatus: "For Editing", WriterName: "archintel"},
             {ArtImg: "/img/archintel.jpg", ArtTitle: "[TEST] testing duplicate images 2", ArtPara: "The quick brown fox jumops over the lazy dog. The quick brown fox jumops over the lazy dog.The quick brown fox jumops over the lazy dog.", ArtStatus: "Published", WriterName: "archintel"}
         ],
-        Customers: [],
+        Customers: [
+            {CustomerName: "Deeside Golf Club bolster Toro fleet", Stars: 3, DateCreated: "Oct 8, 2021 3:12 PM", SourceDate: "Oct 7, 2021", MediaDate: "Oct 8, 2021"},
+            {CustomerName: "REVIEW: 2021 Harley-Davidson Sportster $", Stars: 3, DateCreated: "Oct 8, 2021 2:31 PM", SourceDate: "Oct 7, 2021", MediaDate: "Oct 8, 2021"}
+        ],
         Competitors: [],
         Products: [
             {ProductName: "TVS Jupiter 125 review, test ride", Stars: 4, DateCreated: "Oct 8, 2021 4:37 PM", SourceDate: "Oct 7, 2021", MediaDate: "Oct 8, 2021"}

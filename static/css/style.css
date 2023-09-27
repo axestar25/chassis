@@ -203,22 +203,22 @@ input#search-input::placeholder {
   font-size: 14px;
 }
 
-.products .actions ul li{
+.products .actions ul li, .Customers .actions ul li{
   display: block;
 }
-.products .actions ul li a{
+.products .actions ul li a, .Customers .actions ul li a{
   font-size: 28px;
 }
-.products .actions ul li a .fa-pencil{
+.products .actions ul li a .fa-pencil, .Customers .actions ul li a .fa-pencil{
   color: #4caf50;
 }
-.products .actions ul li a .fa-user-plus{
+.products .actions ul li a .fa-user-plus, .Customers .actions ul li a .fa-user-plus{
   color: #1976d2;
 }
-.products .actions ul li a .fa-file{
+.products .actions ul li a .fa-file, .Customers .actions ul li a .fa-file{
   color: #FF5252;
 }
-.products .product-info a.ProductName{
+.products .product-info a.ProductName, .Customers .product-info a.ProductName{
   color: #1976d2;
   font-weight: 500;
   font-size: 18px;
@@ -278,6 +278,11 @@ input#search-input::placeholder {
   color: #fff;
   font-weight: 600;
   border-radius: 5px;
+}
+
+/* Account Settings */
+.general-settings .custom-control-inline{
+  display: block !important;
 }
 
 .blue-bg-with-text{
