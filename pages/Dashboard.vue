@@ -45,6 +45,9 @@
                                         <span class="w-100 float-left">Media Date {{ item.MediaDate}} </span>
                                     </p>
                                 </div>
+                                <div class="comment-icon d-flex vertical-align-middle align-items-center mx-3">
+                                    <a href="javascript:void(0)"><img src="/img/comment.png" alt=""></a>
+                                </div>
                             </div>
                         </b-tab>
                         <b-tab title="ADVANCE (7)">
@@ -91,6 +94,9 @@
                                 <span class="w-100 float-left">[0 | 0] Source Date {{ item.SourceDate}} </span>
                                 <span class="w-100 float-left">Media Date {{ item.MediaDate}} </span>
                             </p>
+                        </div>
+                        <div class="comment-icon d-flex vertical-align-middle align-items-center mx-3">
+                            <a href="javascript:void(0)" ><img src="/img/comment.png" alt=""></a>
                         </div>
                     </div>
                     <p v-if="Products.length == 0" class="px-2 py-3 text-center mb-0">-No Articles Available-</p>

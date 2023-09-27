@@ -49,7 +49,6 @@
                             </b-form-group>
                         </div>
 
-
                         <button class="btn-create-article btn-primary w-100 my-3">SAVE</button>
                     </div>
                     <div class="right-inner-2 w-50 px-3 py-3 border mx-3 mb-3">
