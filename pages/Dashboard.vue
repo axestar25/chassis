@@ -8,7 +8,7 @@
             <Sidebar />
         </template>
         <div class="main-section d-flex">
-            <div class="left-panel white-bg w-50 mx-3 my-3">
+            <div class="left-panel white-bg w-50 mx-3 my-3 box-shadow-default">
                 <div class="left-inner-1 px-3 py-3">
                     <h5 class="mb-1">Welcome to Walbro Writer Dashboard</h5>
                     <p style="color: #bbbbbb;">Data as of Oct 9, 2021 10:00PM</p>
@@ -40,9 +40,9 @@
                     <p v-if="Competitors.length == 0" class="px-2 py-3 text-center mb-0">-No Articles Available-</p>
                 </div>
 
-                <div class="products">
+                <div class="products" v-if="Products.length != 0" v-loading="loading">
                     <span class="blue-bg-with-text">Products</span>
-                    <div class="product-content d-flex mt-3">
+                    <div class="product-content d-flex mt-3" v-for="(item, index) in Products" :key="index">
                         <div class="actions">
                             <ul class="d-block pl-3">
                                 <li>
@@ -56,13 +56,24 @@
                                 </li>
                             </ul>
                         </div>
+                        <div class="product-info ml-4">
+                            <a href="javascript:void(0)" class="ProductName text-decoration-none">{{ item.ProductName }}</a>
+                            <div class="rate mt-1 mb-1">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                            </div>
+                            <p class="color-gray">
+                                <span class="w-100 float-left">Created on {{ item.DateCreated}} </span>
+                                <span class="w-100 float-left">[0 | 0] Source Date {{ item.SourceDate}} </span>
+                                <span class="w-100 float-left">Media Date {{ item.MediaDate}} </span>
+                            </p>
+                        </div>
                     </div>
                     <p v-if="Products.length == 0" class="px-2 py-3 text-center mb-0">-No Articles Available-</p>
                 </div>
             </div>
 
             <div class="right-panel w-50 mx-3 my-3">
-                <div class="rp-1 white-bg mb-3">
+                <div class="rp-1 white-bg mb-3 box-shadow-default">
                     <h5 class="mb-1 px-3 py-3">Writer Production</h5>
 
                     <div class="row ml-0 mr-0">
@@ -113,7 +124,7 @@
                     </div>
                 </div>
 
-                <div class="rp-2 white-bg mb-3">
+                <div class="rp-2 white-bg mb-3 box-shadow-default">
                     <h5 class="mb-1 px-3 py-3">Article List Preview</h5>
                     <div class="customer">
                         <span class="blue-bg-with-text">Customer</span>
@@ -134,7 +145,7 @@
                                         </a>
                                         <a href="javascript:void(0)" class="ArtTitle text-decoration-none">{{ item.ArtTitle }}</a>
                                     </div>
-                                    <p class="art-para">{{ item.ArtPara }}</p>
+                                    <p class="art-para color-gray mt-2">{{ item.ArtPara }}</p>
                                 </div>
                             </div>
                         </div>

@@ -218,6 +218,15 @@ input#search-input::placeholder {
 .products .actions ul li a .fa-file{
   color: #FF5252;
 }
+.products .product-info a.ProductName{
+  color: #1976d2;
+  font-weight: 500;
+  font-size: 18px;
+}
+.rate .fa-star {
+  color: #FF9800;
+  font-size: 18px;
+}
 
 
 .customer .art-img{
@@ -279,4 +288,11 @@ input#search-input::placeholder {
   padding: 8px;
   font-weight: 500;
   width: 100%;
+}
+
+.color-gray{
+  color: #818181;
+}
+.box-shadow-default{
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
