@@ -236,17 +236,169 @@ export default {
             ],
             currentPage: 1,
             perPage: 10,
+
+            Users: [],
+            Firstname: '',
+            Lastname: '',
+            Type: '',
+            Status: '',
+
+            article: {
+                Title: '',
+                Link: '',
+                Date: '',
+                Content: '',
+                Status: '',
+                Writer: '',
+                Editor: '',
+                Company: '',
+            },
+            archivedArticles: [],
+
         }
     }, 
+    methods: {
+        getUsers(){
+            axios.get('/api/Users')
+            .then(res => {
+                this.Users = res.data;
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        },
+        addUser() {
+            axios.post('/api/add-user', {
+                Firstname: this.Firstname,
+                Lastname: this.Lastname,
+                Type: this.Type,
+                Status: this.Status,
+            })
+            .then(res => {
+                console.log(res.data);
+                this.$message.success(res.data.message)
+                window.location.reload()
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        },
+        deleteUser(userId) {
+            // axios.delete(`/api/users/${userId}`)
+            // .then(res => {
+            //     console.log(res.data);
+            //     this.$message.success(res.data.message);
+            //     this.getUsers();
+            // })
+            // .catch(error => {
+            //     console.error(error);
+            // });
+            this.$confirm("This will delete the User" + userId + ". Continue?", "Warning", {
+                confirmButtonText: "OK",
+                cancelButtonText: "Cancel",
+                type: "warning"
+            })
+            .then(() => {
+                this.$store
+                .dispatch("/api/users/", userId)
+                .then(res => {
+                    this.$message.success(res.data.message);
+                    this.getUsers();
+                })
+                .catch(err => {
+                    this.$message.error(err.response.data.message);
+                });
+            })
+            .catch(() => {
+                this.$message({
+                    type: "info",
+                    message: "Delete Cancelled"
+                });
+            });
+        },
+        updateUser() {
+            axios.put(`/api/users/${this.userId}`, this.User)
+            .then(res => {
+                console.log(res.data);
+                this.$message.success(res.data.message)
+                window.location.reload()
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        },
+
+        getArticles() {
+            axios.get('/api/articles')
+                .then(res => {
+                    this.articles = res.data;
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
+        createArticle() {
+            axios.post('/api/articles', this.article)
+            .then(response => {
+                console.log(response.data);
+                this.$message.success(res.data.message)
+                window.location.reload()
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        },
+        deleteArticle(articleId) {
+            axios.delete(`/api/articles/${articleId}`)
+                .then(res => {
+                    console.log(res.data);
+                    this.getArticles();
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
+
+        fetchArchivedArticles() {
+            axios.get('/api/articles/archived')
+                .then(res => {
+                    this.archivedArticles = res.data;
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
+        restoreArticle(articleId) {
+            axios.put(`/api/articles/restore/${articleId}`)
+                .then(res => {
+                    console.log(res.data);
+                this.fetchArchivedArticles();
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
+        updateArticle() {
+            axios.put(`/api/articles/${this.article.id}`, this.article)
+                .then(res => {
+                    console.log(res.data);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
+    },
     mounted() {
-        axios.get('/api/users')
-        .then(response => {
-            this.users = response.data;
-            console.log(this.users)
-        })
-        .catch(error => {
-            console.error(error);
-        });
+        // axios.get('/api/users')
+        // .then(response => {
+        //     this.users = response.data;
+        //     console.log(this.users)
+        // })
+        // .catch(error => {
+        //     console.error(error);
+        // });
+
+        this.getUsers();
 
     },
 };
