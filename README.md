@@ -21,6 +21,41 @@ $ npm run generate
 
 For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
 
+## Database
+- Users
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    firstname TEXT,
+    lastname TEXT,
+    type VARCHAR(10) CHECK (type IN ('Writer', 'Editor')),
+    status VARCHAR(10) CHECK (status IN ('Active', 'Inactive'))
+);
+
+- Company
+CREATE TABLE Company (
+    id SERIAL PRIMARY KEY,
+    logo TEXT,
+    name TEXT,
+    status VARCHAR(10) CHECK (status IN ('Active', 'Inactive'))
+);
+
+- Article
+CREATE TABLE Article (
+    id SERIAL PRIMARY KEY,
+    image TEXT,
+    title TEXT,
+    link TEXT,
+    date DATE,
+    content TEXT,
+    status VARCHAR(20) CHECK (status IN ('For Edit', 'Published')),
+    writer_id INT,
+    editor_id INT,
+    company_id INT,
+    FOREIGN KEY (writer_id) REFERENCES users(id),
+    FOREIGN KEY (editor_id) REFERENCES users(id),
+    FOREIGN KEY (company_id) REFERENCES Company(id)
+);
+
 ## Special Directories
 
 You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
