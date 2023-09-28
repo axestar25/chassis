@@ -68,22 +68,32 @@ import Navbar from "~/components/Layout/Navbar";
 import Sidebar from "~/components/Layout/Sidebar";
 
 export default {
-  components: {
-    Navbar,
-    Sidebar,
-    selected: [],
-  },
-  data(){
-    return {
-        isBusy: false,
-        // fields: [
-        //     { key: "name", label: "Name",},
-        //     { key: "assigned", label: "Assigned", sortable: false },
-        //     { key: "submitted", label: "Submitted", sortable: false, thClass: "tdSubmitted" },
-        // ],
-        currentPage: 1,
-    }
-  }, 
+    props: {
+        items: Array, // An array of objects representing your table data
+    },
+    components: {
+        Navbar,
+        Sidebar,
+        
+    },
+    data(){
+        return {
+            isBusy: false,
+            // fields: [
+            //     { key: "name", label: "Name",},
+            //     { key: "assigned", label: "Assigned", sortable: false },
+            //     { key: "submitted", label: "Submitted", sortable: false, thClass: "tdSubmitted" },
+            // ],
+            currentPage: 1,
+            selected: [],
+
+            // tableData: [
+            //     { selected: false, column1: 'Row 1, Column 1', column2: 'Row 1, Column 2' },
+            //     { selected: false, column1: 'Row 2, Column 1', column2: 'Row 2, Column 2' },
+            //     // Add more data objects as needed
+            // ],
+        }
+    }, 
   mounted() {
 
   }

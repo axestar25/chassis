@@ -1,6 +1,5 @@
 <template>
     <div class="main-wrapper chassis-dashboard" style="padding: 0px; background-color: #fcfdfd">
-        <SidebarCompany />
         <template>
             <Navbar />
             <Sidebar />
@@ -68,7 +67,7 @@
                     <p v-if="Competitors.length == 0" class="px-2 py-3 text-center mb-0">-No Articles Available-</p>
                 </div>
 
-                <div class="products" v-if="Products.length != 0" v-loading="loading">
+                <div class="products" v-if="Products.length != 0">
                     <span class="blue-bg-with-text">Products</span>
                     <div class="product-content d-flex mt-3" v-for="(item, index) in Products" :key="index">
                         <div class="actions">
@@ -160,7 +159,7 @@
                     <div class="customer">
                         <span class="blue-bg-with-text">Customer</span>
 
-                        <div v-if="Articles.length != 0" class="row ml-0 mr-0 px-3 py-3" v-loading="loading">
+                        <div v-if="Articles.length != 0" class="row ml-0 mr-0 px-3 py-3">
 					        <div v-for="(item, index) in Articles" :key="index" class="d-flex mb-4">
                                 <div class="art-img">
                                     <img src="img/archintel.jpg" alt="">
@@ -202,44 +201,53 @@
 <script>
 import Navbar from "~/components/Layout/Navbar";
 import Sidebar from "~/components/Layout/Sidebar";
-import SidebarCompany from "~/components/Layout/SidebarCompany";
+// import SidebarCompany from "~/components/Layout/SidebarCompany";
+import axios from 'axios';
 
 export default {
-  components: {
-    Navbar,
-    Sidebar,
-  },
-  data(){
-    return {
-        isBusy: false,
-        writerproduction: [
-            { name: "Writer User 1", assigned: "7", submitted: "7"},
-            { name: "Writer User 2", assigned: "3", submitted: "2"},
-        ],
-        Articles: [
-            {ArtImg: "/img/archintel.jpg", ArtTitle: "[TEST] testing duplicate images", ArtPara: "The quick brown fox jumops over the lazy dog. The quick brown fox jumops over the lazy dog.The quick brown fox jumops over the lazy dog.", ArtStatus: "For Editing", WriterName: "archintel"},
-            {ArtImg: "/img/archintel.jpg", ArtTitle: "[TEST] testing duplicate images 2", ArtPara: "The quick brown fox jumops over the lazy dog. The quick brown fox jumops over the lazy dog.The quick brown fox jumops over the lazy dog.", ArtStatus: "Published", WriterName: "archintel"}
-        ],
-        Customers: [
-            {CustomerName: "Deeside Golf Club bolster Toro fleet", Stars: 3, DateCreated: "Oct 8, 2021 3:12 PM", SourceDate: "Oct 7, 2021", MediaDate: "Oct 8, 2021"},
-            {CustomerName: "REVIEW: 2021 Harley-Davidson Sportster $", Stars: 3, DateCreated: "Oct 8, 2021 2:31 PM", SourceDate: "Oct 7, 2021", MediaDate: "Oct 8, 2021"}
-        ],
-        Competitors: [],
-        Products: [
-            {ProductName: "TVS Jupiter 125 review, test ride", Stars: 4, DateCreated: "Oct 8, 2021 4:37 PM", SourceDate: "Oct 7, 2021", MediaDate: "Oct 8, 2021"}
-        ],
-        Products2: [],
-        fields: [
-            { key: "name", label: "Name",},
-            { key: "assigned", label: "Assigned", sortable: false },
-            { key: "submitted", label: "Submitted", sortable: false, thClass: "tdSubmitted" },
-        ],
-        currentPage: 1,
-		perPage: 10,
-    }
-  }, 
-  mounted() {
+    components: {
+        Navbar,
+        Sidebar,
+    },
+    data(){
+        return {
+            isBusy: false,
+            writerproduction: [
+                { name: "Writer User 1", assigned: "7", submitted: "7"},
+                { name: "Writer User 2", assigned: "3", submitted: "2"},
+            ],
+            Articles: [
+                {ArtImg: "/img/archintel.jpg", ArtTitle: "[TEST] testing duplicate images", ArtPara: "The quick brown fox jumops over the lazy dog. The quick brown fox jumops over the lazy dog.The quick brown fox jumops over the lazy dog.", ArtStatus: "For Editing", WriterName: "archintel"},
+                {ArtImg: "/img/archintel.jpg", ArtTitle: "[TEST] testing duplicate images 2", ArtPara: "The quick brown fox jumops over the lazy dog. The quick brown fox jumops over the lazy dog.The quick brown fox jumops over the lazy dog.", ArtStatus: "Published", WriterName: "archintel"}
+            ],
+            Customers: [
+                {CustomerName: "Deeside Golf Club bolster Toro fleet", Stars: 3, DateCreated: "Oct 8, 2021 3:12 PM", SourceDate: "Oct 7, 2021", MediaDate: "Oct 8, 2021"},
+                {CustomerName: "REVIEW: 2021 Harley-Davidson Sportster $", Stars: 3, DateCreated: "Oct 8, 2021 2:31 PM", SourceDate: "Oct 7, 2021", MediaDate: "Oct 8, 2021"}
+            ],
+            Competitors: [],
+            Products: [
+                {ProductName: "TVS Jupiter 125 review, test ride", Stars: 4, DateCreated: "Oct 8, 2021 4:37 PM", SourceDate: "Oct 7, 2021", MediaDate: "Oct 8, 2021"}
+            ],
+            Products2: [],
+            fields: [
+                { key: "name", label: "Name",},
+                { key: "assigned", label: "Assigned", sortable: false },
+                { key: "submitted", label: "Submitted", sortable: false, thClass: "tdSubmitted" },
+            ],
+            currentPage: 1,
+            perPage: 10,
+        }
+    }, 
+    mounted() {
+        axios.get('/api/users')
+        .then(response => {
+            this.users = response.data;
+            console.log(this.users)
+        })
+        .catch(error => {
+            console.error(error);
+        });
 
-  }
+    },
 };
 </script>

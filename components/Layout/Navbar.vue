@@ -106,7 +106,7 @@
                                 <b-dropdown-divider></b-dropdown-divider>
                                 <p class="mx-3 color-gray">The quick brown fox jumps over the lazy dog.</p>
                                 <b-dropdown-divider></b-dropdown-divider>
-                                <div v-if="oldVersion.length != 0" v-loading="loading" class="mb-3">
+                                <div v-if="oldVersion.length != 0"  class="mb-3">
                                     <div class="d-flex vertical-align-middle align-items-center mx-3 my-3" v-for="(item, index) in oldVersion" :key="index">
                                         <div class="version-info w-100">
                                             <b class="w-100 d-block">{{ item.ver }}</b>
@@ -128,6 +128,7 @@
 export default {
 	data() {
 		return {
+            isBusy: false,
 			version: "4.4.0",
             versionDate: "Aug 27, 2021",
 
