@@ -22,7 +22,6 @@ $ npm run generate
 For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
 
 ## Database
-- Users
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     firstname TEXT,
@@ -31,7 +30,6 @@ CREATE TABLE users (
     status VARCHAR(10) CHECK (status IN ('Active', 'Inactive'))
 );
 
-- Company
 CREATE TABLE Company (
     id SERIAL PRIMARY KEY,
     logo TEXT,
@@ -39,7 +37,6 @@ CREATE TABLE Company (
     status VARCHAR(10) CHECK (status IN ('Active', 'Inactive'))
 );
 
-- Article
 CREATE TABLE Article (
     id SERIAL PRIMARY KEY,
     image TEXT,
