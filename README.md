@@ -37,7 +37,7 @@ CREATE TABLE Company (
     status VARCHAR(10) CHECK (status IN ('Active', 'Inactive'))
 );
 
-CREATE TABLE Article ( id SERIAL PRIMARY KEY, image VARCHAR(20), title VARCHAR(20), link VARCHAR(20), date VARCHAR(20), content VARCHAR(20), status VARCHAR(20) CHECK (status IN ('For Edit', 'Published')), writer VARCHAR(20), editor VARCHAR(20), company VARCHAR(20));
+CREATE TABLE Article ( id SERIAL PRIMARY KEY, image longblob, title VARCHAR(20), link VARCHAR(20), date VARCHAR(20), content VARCHAR(100), status VARCHAR(20) CHECK (status IN ('For Edit', 'Published')), writer VARCHAR(20), editor VARCHAR(20), company VARCHAR(20));
 
 ## Special Directories
 
