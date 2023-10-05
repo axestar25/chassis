@@ -37,21 +37,7 @@ CREATE TABLE Company (
     status VARCHAR(10) CHECK (status IN ('Active', 'Inactive'))
 );
 
-CREATE TABLE Article (
-    id SERIAL PRIMARY KEY,
-    image TEXT,
-    title TEXT,
-    link TEXT,
-    date DATE,
-    content TEXT,
-    status VARCHAR(20) CHECK (status IN ('For Edit', 'Published')),
-    writer_id INT,
-    editor_id INT,
-    company_id INT,
-    FOREIGN KEY (writer_id) REFERENCES users(id),
-    FOREIGN KEY (editor_id) REFERENCES users(id),
-    FOREIGN KEY (company_id) REFERENCES Company(id)
-);
+CREATE TABLE Article ( id SERIAL PRIMARY KEY, image TEXT, title TEXT, link TEXT, date DATE, content TEXT, status VARCHAR(20) CHECK (status IN ('For Edit', 'Published')), writer_id VARCHAR(20), editor_id VARCHAR(20), company VARCHAR(20));
 
 ## Special Directories
 
