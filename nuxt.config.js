@@ -16,7 +16,13 @@ export default {
       { rel: 'stylesheet', href: '/css/bootstrap.min.css' },
       { rel: 'stylesheet', href: '/css/fontawesome-free/css/all.min.css' },
       { rel: 'stylesheet', href: '/css/style.css' },
-    ]
+    ],
+    script: [
+      { src: '/js/jquery-3.6.0.min.js', type: 'text/javascript', body: true },
+      { src: 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js', integrity: "sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49", crossorigin: "anonymous", body: true },
+      { src: '/js/bootstrap.min.js', body: true },
+      // { src: '/js/js.js', type: 'text/javascript', body: true },
+  ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css

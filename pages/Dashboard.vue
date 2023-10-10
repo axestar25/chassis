@@ -10,7 +10,29 @@
                     <h5 class="mb-1">Welcome to Walbro Writer Dashboard</h5>
                     <p style="color: #bbbbbb;">Data as of Oct 9, 2021 10:00PM</p>
 
-                    <button class="btn-create-article btn-primary">Create Article</button>
+                    <button class="btn-create-article btn-primary" @click="$bvModal.show('bv-modal-create-article')">Create Article</button>
+                    <CreateArticle />
+                    <!-- <b-modal id="bv-modal-create-article" hide-footer>
+                        <template #modal-title>
+                            Create Artickle
+                        </template>
+                        <div class="d-block text-center">
+                            <label for="input-default">Title</label>
+                            <b-form-input v-model="article.Title" placeholder="Article Title"></b-form-input>
+
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label class="font-weight-bold">Title <sup style="color: red;">*</sup></label>
+                                    <input v-model="c_name" type="text" class="form-control" placeholder="Enter Full Name" id="name" name="name" required />
+                                    <p class="error-message mb-0">
+                                        
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <b-button class="mt-3" block @click="SaveArticle()">Save Article</b-button>
+                        <b-button class="mt-3" block @click="$bvModal.hide('bv-modal-create-article')">Close</b-button>
+                    </b-modal> -->
                 </div>
 
                 <div class="Customers">
@@ -160,22 +182,25 @@
                         <span class="blue-bg-with-text">Customer</span>
 
                         <div v-if="Articles.length != 0" class="row ml-0 mr-0 px-3 py-3">
-					        <div v-for="(item, index) in Articles" :key="index" class="d-flex mb-4">
+					        <div v-for="(item, index) in Articles" :key="index" class="d-flex mb-4 w-100 float-left">
                                 <div class="art-img">
-                                    <img src="img/archintel.jpg" alt="">
+                                    <img :src="item.image" alt="">
+                                    <img v-if="item.image == 'No Image Uploaded' || item.image == null" src="/img/archintel.jpg" alt="">
                                     <span class="safe-to-use d-block text-center my-2">Safe to Use</span>
-                                    <span class="d-block text-center writer-name">{{ item.WriterName }}</span>
+                                    <span class="d-block text-center writer-name">{{ item.writer }}</span>
 
                                     <a href="javascript:void(0)" class="view-details d-block text-center mt-3 text-decoration-none">VIEW DETAILS</a>
                                 </div>
                                 <div class="Art-Content ml-3">
                                     <div class="art-title">
                                         <a href="javascript:void(0)" class="text-decoration-none">
-                                            <span class="for-editing mr-2"><i v-if="item.ArtStatus == 'For Editing'" class="fa fa-pencil" aria-hidden="true"></i> {{ item.ArtStatus }}</span>
+                                            <span class="for-editing mr-2"><i v-if="item.status == 'For Editing'" class="fa fa-pencil" aria-hidden="true"></i> {{ item.status }}</span>
                                         </a>
-                                        <a href="javascript:void(0)" class="ArtTitle text-decoration-none">{{ item.ArtTitle }}</a>
+                                        <a href="javascript:void(0)" class="ArtTitle text-decoration-none">{{ item.title }}</a>
                                     </div>
-                                    <p class="art-para color-gray mt-2">{{ item.ArtPara }}</p>
+                                    <p class="art-para color-gray mt-2">{{ item.content }}</p>
+
+                                    <button class="btn-create-article btn-primary" @click="deleteArticle(item.id)">Delete Article</button>
                                 </div>
                             </div>
                         </div>
@@ -199,15 +224,26 @@
     </div>
 </template>
 <script>
+import Vue from 'vue';
 import Navbar from "~/components/Layout/Navbar";
 import Sidebar from "~/components/Layout/Sidebar";
+import CreateArticle from "~/components/Modals/Create-Article";
 // import SidebarCompany from "~/components/Layout/SidebarCompany";
 import axios from 'axios';
+import jQuery from 'jquery';
+import $ from 'jquery';
+
+import { apiUsers } from "~/api/getData.js";
+import { apiArticles } from "~/api/getData.js";
+import { apiSaveArticles } from "~/api/getData.js";
+import { apiDeleteArticles } from "~/api/getData.js";
+
 
 export default {
     components: {
         Navbar,
         Sidebar,
+        CreateArticle,
     },
     data(){
         return {
@@ -216,10 +252,11 @@ export default {
                 { name: "Writer User 1", assigned: "7", submitted: "7"},
                 { name: "Writer User 2", assigned: "3", submitted: "2"},
             ],
-            Articles: [
-                {ArtImg: "/img/archintel.jpg", ArtTitle: "[TEST] testing duplicate images", ArtPara: "The quick brown fox jumops over the lazy dog. The quick brown fox jumops over the lazy dog.The quick brown fox jumops over the lazy dog.", ArtStatus: "For Editing", WriterName: "archintel"},
-                {ArtImg: "/img/archintel.jpg", ArtTitle: "[TEST] testing duplicate images 2", ArtPara: "The quick brown fox jumops over the lazy dog. The quick brown fox jumops over the lazy dog.The quick brown fox jumops over the lazy dog.", ArtStatus: "Published", WriterName: "archintel"}
-            ],
+            Articles: [],
+            // Articles: [
+            //     {ArtImg: "/img/archintel.jpg", ArtTitle: "[TEST] testing duplicate images", ArtPara: "The quick brown fox jumops over the lazy dog. The quick brown fox jumops over the lazy dog.The quick brown fox jumops over the lazy dog.", ArtStatus: "For Editing", WriterName: "archintel"},
+            //     {ArtImg: "/img/archintel.jpg", ArtTitle: "[TEST] testing duplicate images 2", ArtPara: "The quick brown fox jumops over the lazy dog. The quick brown fox jumops over the lazy dog.The quick brown fox jumops over the lazy dog.", ArtStatus: "Published", WriterName: "archintel"}
+            // ],
             Customers: [
                 {CustomerName: "Deeside Golf Club bolster Toro fleet", Stars: 3, DateCreated: "Oct 8, 2021 3:12 PM", SourceDate: "Oct 7, 2021", MediaDate: "Oct 8, 2021"},
                 {CustomerName: "REVIEW: 2021 Harley-Davidson Sportster $", Stars: 3, DateCreated: "Oct 8, 2021 2:31 PM", SourceDate: "Oct 7, 2021", MediaDate: "Oct 8, 2021"}
@@ -243,25 +280,36 @@ export default {
             Type: '',
             Status: '',
 
-            article: {
-                Title: '',
-                Link: '',
-                Date: '',
-                Content: '',
-                Status: '',
-                Writer: '',
-                Editor: '',
-                Company: '',
-            },
+            // article: {
+            //     Image: '',
+            //     Title: '',
+            //     Link: '',
+            //     Date: '',
+            //     Content: '',
+            //     Status: '',
+            //     Writer: '',
+            //     Editor: '',
+            //     Company: '',
+            // },
             archivedArticles: [],
+            modalVisible: false,
 
         }
     }, 
     methods: {
+        // showModal(modal, title) {
+        //     if (modal == "Create-Article"){
+        //         // this.$events.fire("eventShow_CreateArticle_Modal", field, title);
+        //         jQuery("#Create-Article").modal("show");
+        //         // this.$refs['Create-Article'].show();
+        //     }
+        // },
         getUsers(){
-            axios.get('/api/Users')
+            // const apiUrl = 'postgres://default:AbPRC6rEKhX2@ep-gentle-snowflake-49596935-pooler.us-east-1.postgres.vercel-storage.com:5432/verceldb';
+            axios.get(apiUsers) // /api/Users
             .then(res => {
                 this.Users = res.data;
+                console.log(this.Users);
             })
             .catch(error => {
                 console.error(error);
@@ -329,34 +377,52 @@ export default {
         },
 
         getArticles() {
-            axios.get('/api/articles')
+            axios.get(apiArticles)
                 .then(res => {
-                    this.articles = res.data;
+                    this.Articles = res.data;
+                    console.log(this.Articles);
+                    this.imageUrl = 'data:image/jpeg;base64,' + res.data.imageData;
+                    console.log(res.data.image);
                 })
                 .catch(error => {
                     console.error(error);
                 });
         },
-        createArticle() {
-            axios.post('/api/articles', this.article)
-            .then(response => {
-                console.log(response.data);
-                this.$message.success(res.data.message)
-                window.location.reload()
-            })
-            .catch(error => {
-                console.error(error);
-            });
-        },
-        deleteArticle(articleId) {
-            axios.delete(`/api/articles/${articleId}`)
-                .then(res => {
-                    console.log(res.data);
-                    this.getArticles();
-                })
-                .catch(error => {
-                    console.error(error);
+        // SaveArticle() {
+        //     axios.post('/api/articles', this.article)
+        //     .then(response => {
+        //         console.log(response.data);
+        //         this.$message.success(res.data.message)
+        //         window.location.reload()
+        //         // $bvModal.hide('bv-modal-create-article');
+        //     })
+        //     .catch(error => {
+        //         console.error(error);
+        //     });
+        // },
+        async deleteArticle(id) {
+            try {
+                await axios.delete(apiDeleteArticles, {
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    data: {
+                        id: id,
+                    },
+                    transformRequest: [
+                        function (data) {
+                        // Convert the request body to URL-encoded form data
+                        const formData = new URLSearchParams();
+                        for (const key in data) {
+                            formData.append(key, data[key]);
+                        }
+                        return formData.toString();
+                        },
+                    ],
                 });
+            } catch (error) {
+                console.error('Error deleting article:', error);
+            }
         },
 
         fetchArchivedArticles() {
@@ -398,7 +464,17 @@ export default {
         //     console.error(error);
         // });
 
+        // axios.get('postgres://default:AbPRC6rEKhX2@ep-gentle-snowflake-49596935-pooler.us-east-1.postgres.vercel-storage.com:5432/users') // Replace with your actual endpoint URL
+        // .then(response => {
+        //     this.items = response.data;
+        //     console.log(this.items)
+        // })
+        // .catch(error => {
+        //     console.error(error);
+        // });
+
         this.getUsers();
+        this.getArticles();
 
     },
 };
