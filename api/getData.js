@@ -20,7 +20,8 @@ import jQuery from 'jquery';
 export const apiUsers = 'http://localhost:8080/chassis-api/getUsers.php';
 export const apiArticles = 'http://localhost:8080/chassis-api/getArticles.php';
 export const apiSaveArticles = 'http://localhost:8080/chassis-api/saveArticles.php';
-export const apiDeleteArticles = 'http://localhost:8080/chassis-api/deleteArticles.php';
+export const apiDeleteArticle = 'http://localhost:8080/chassis-api/deleteArticle.php';
+export const apiUpdateArticle = 'http://localhost:8080/chassis-api/updateArticle.php';
 
 // axios.get(apiUrl)
 //   .then(response => {

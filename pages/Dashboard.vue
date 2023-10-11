@@ -200,7 +200,7 @@
                                     </div>
                                     <p class="art-para color-gray mt-2">{{ item.content }}</p>
 
-                                    <button class="btn-create-article btn-primary" @click="deleteArticle(item.id)">Delete Article</button>
+                                    <button class="btn btn-danger" @click="deleteArticle(item.id)">Delete Article</button>
                                 </div>
                             </div>
                         </div>
@@ -236,7 +236,8 @@ import $ from 'jquery';
 import { apiUsers } from "~/api/getData.js";
 import { apiArticles } from "~/api/getData.js";
 import { apiSaveArticles } from "~/api/getData.js";
-import { apiDeleteArticles } from "~/api/getData.js";
+import { apiDeleteArticle } from "~/api/getData.js";
+import { apiUpdateArticle } from "~/api/getData.js";
 
 
 export default {
@@ -402,7 +403,7 @@ export default {
         // },
         async deleteArticle(id) {
             try {
-                await axios.delete(apiDeleteArticles, {
+                await axios.delete(apiDeleteArticle, {
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
                     },
@@ -444,14 +445,40 @@ export default {
                     console.error(error);
                 });
         },
-        updateArticle() {
-            axios.put(`/api/articles/${this.article.id}`, this.article)
-                .then(res => {
-                    console.log(res.data);
-                })
-                .catch(error => {
-                    console.error(error);
+        async updateArticle(articleId, newImage, newTitle, newlink, newDate, newContent, newStatus, newWriter, newEditor, newCompany) {
+            try {
+                const response = await axios.post(apiUpdateArticle, {
+                id: articleId,
+                image: newImage,
+                title: newTitle,
+                link: newlink,
+                date: newDate,
+                content: newContent,
+                status: newStatus,
+                writer: newWriter,
+                editor: newEditor,
+                company: newCompany,
+                // Include other fields as needed
                 });
+
+                // Handle the response, e.g., show a success message
+                console.log(response.data.message);
+                this.displaySuccessMessage('Article Updated successfully');
+            } catch (error) {
+                console.error('Error updating article:', error);
+            }
+        },
+        displaySuccessMessage(message) {
+            this.successMessage = message;
+            this.showSuccessMessage = true;
+
+            setTimeout(() => {
+                this.closeSuccessDialog();
+                window.location.reload()
+            }, 3000);
+        },
+        closeSuccessDialog() {
+            this.showSuccessMessage = false;
         },
     },
     mounted() {
